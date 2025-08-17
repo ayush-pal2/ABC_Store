@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Store Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to ABC Store</h1>
+    <p class="lead">Your one-stop shop for all your needs.</p>
+    <hr class="my-4">
+    <p>Explore our wide range of products from various vendors.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'store:product_list' %}" role="button">Start Shopping</a>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h3>Why Choose Us?</h3>
+        <ul>
+            <li>Wide variety of products</li>
+            <li>Competitive prices</li>
+            <li>Secure shopping experience</li>
+            <li>Fast and reliable shipping</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3>Featured Vendors</h3>
+        <!-- Consider adding a dynamic list of featured vendors here -->
+        <p>We partner with top-quality vendors to bring you the best products.</p>
+    </div>
+</div>
+
+<div class="mt-4">
+    <h3>How It Works</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>1. Browse</h5>
+            <p>Explore our wide range of products from various categories.</p>
+        </div>
+        <div class="col-md-4">
+            <h5>2. Select</h5>
+            <p>Choose the items you want and add them to your cart.</p>
+        </div>
+        <div class="col-md-4">
+            <h5>3. Checkout</h5>
+            <p>Securely complete your purchase and wait for delivery.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

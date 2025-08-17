@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Success - ABC Store{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body text-center">
+            <h1 class="card-title text-success">Order Placed Successfully!</h1>
+            <p class="card-text">Thank you for your purchase. Your order has been placed successfully.</p>
+            <p class="card-text">Order Number: {{ order.id }}</p>
+            <p class="card-text">Product: {{ order.product.name }}</p>
+            <a href="{% url 'accounts:customer_dashboard' %}" class="btn btn-primary mt-3">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

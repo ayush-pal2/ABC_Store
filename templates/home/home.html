@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Welcome to ABC Store{% endblock %}
+
+{% block content %}
+<!-- Carousel Section -->
+<div id="productCarousel" class="carousel slide">
+    <div class="carousel-inner">
+        {% for product in featured_products %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ product.image.url }}" class="d-block w-100" alt="{{ product.name }}">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{ product.name }}</h5>
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="carousel-item active">
+            <img src="{% static 'images/placeholder.jpg' %}" class="d-block w-100" alt="Placeholder">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>No Products Available</h5>
+                <p>Currently, there are no featured products.</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#productCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#productCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+
+<div class="jumbotron text-center mt-4">
+    <h1 class="display-4">Welcome to ABC Store</h1>
+    <p class="lead">Your one-stop shop for quality products from multiple vendors.</p>
+    <hr class="my-4">
+    <p>Discover amazing deals and shop with confidence.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'store:product_list' %}" role="button">Start Shopping</a>
+</div>
+
+<div class="row mt-5 text-center">
+    <div class="col-md-4">
+        <h3>Wide Selection</h3>
+        <p>Browse through thousands of products from various categories and vendors.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Great Deals</h3>
+        <p>Enjoy competitive prices and exclusive offers on our platform.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Secure Shopping</h3>
+        <p>Shop with confidence knowing your transactions are safe and secure.</p>
+    </div>
+</div>
+
+<div class="mt-5">
+    <h2 class="mb-4">Featured Categories</h2>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <p class="card-text">{{ category.description }}</p>
+                    <a href="{% url 'category:category_detail' slug=category.slug %}" class="btn btn-outline-primary">Shop {{ category.name }}</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No categories available at the moment.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="mt-5">
+    <h2 class="mb-4">Why Choose ABC Store?</h2>
+    <ul class="list-group">
+        <li class="list-group-item">Multiple vendors offering a wide range of products</li>
+        <li class="list-group-item">Competitive prices and regular promotions</li>
+        <li class="list-group-item">Secure and easy-to-use platform</li>
+        <li class="list-group-item">Excellent customer support</li>
+        <li class="list-group-item">Fast and reliable shipping options</li>
+    </ul>
+</div>
+{% endblock %}

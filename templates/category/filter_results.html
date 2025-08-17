@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Filtered Products{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Filtered Products</h2>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            {% else %}
+                <img src="{% static 'images/no_image.png' %}" class="card-img-top" alt="No Image Available">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                <p class="card-text"><strong>Price: KES{{ product.price }}</strong></p>
+                <p class="card-text">Brand: {{ product.brand }}</p>
+                <p class="card-text">Size: {{ product.size }}</p>
+                <p class="card-text">Color: {{ product.color }}</p>
+                <a href="#" class="btn btn-primary">View Details</a>
+                <a href="#" class="btn btn-success">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p>No products match your filter criteria.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

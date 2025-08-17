@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+<h2>Add New Product</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <p>Don't see the right category? <a href="{% url 'category:add_category' %}">Add a new category</a>.</p>
+    
+    <button type="submit">Save</button>
+</form>
+
+<a href="{% url 'accounts:vendor_dashboard' %}">Back to Dashboard</a>
+{% endblock %}

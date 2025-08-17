@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-details">
+    <div class="product-image">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    </div>
+    <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Category: <a href="{% url 'category:category_products' product.category.slug %}">{{ product.category.name }}</a></p>
+        <p>Price: ${{ product.price }}</p>
+        
+        <form method="post" action="{% url 'store:add_to_cart' product.id %}">
+            {% csrf_token %}
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ product.stock }}">
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    .product-details {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .product-image img {
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-info {
+        max-width: 600px;
+        margin-left: 20px;
+    }
+
+    .product-info h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .product-info p {
+        margin-bottom: 15px;
+    }
+
+    .product-info .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .product-info .btn:hover {
+        background-color: #0056b3;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        margin-right: 10px;
+    }
+</style>

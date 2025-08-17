@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Vendor Registration{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4">Register as Vendor</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                <input type="text" name="first_name" id="{{ form.first_name.id_for_label }}" class="form-control" value="{{ form.first_name.value }}" required>
+                {{ form.first_name.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                <input type="text" name="last_name" id="{{ form.last_name.id_for_label }}" class="form-control" value="{{ form.last_name.value }}" required>
+                {{ form.last_name.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                <input type="email" name="email" id="{{ form.email.id_for_label }}" class="form-control" value="{{ form.email.value }}" required>
+                {{ form.email.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                <input type="text" name="username" id="{{ form.username.id_for_label }}" class="form-control" value="{{ form.username.value }}" required>
+                {{ form.username.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.password1.id_for_label }}">Password</label>
+                <input type="password" name="password1" id="{{ form.password1.id_for_label }}" class="form-control" required>
+                {{ form.password1.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                <input type="password" name="password2" id="{{ form.password2.id_for_label }}" class="form-control" required>
+                {{ form.password2.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.business_name.id_for_label }}">Business Name</label>
+                <input type="text" name="business_name" id="{{ form.business_name.id_for_label }}" class="form-control" value="{{ form.business_name.value }}" required>
+                {{ form.business_name.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.contact_number.id_for_label }}">Contact Number</label>
+                <input type="text" name="contact_number" id="{{ form.contact_number.id_for_label }}" class="form-control" value="{{ form.contact_number.value }}" required>
+                {{ form.contact_number.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.address.id_for_label }}">Address</label>
+                <input type="text" name="address" id="{{ form.address.id_for_label }}" class="form-control" value="{{ form.address.value }}" required>
+                {{ form.address.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.website.id_for_label }}">Website</label>
+                <input type="text" name="website" id="{{ form.website.id_for_label }}" class="form-control" value="{{ form.website.value }}">
+                {{ form.website.errors }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                <textarea name="description" id="{{ form.description.id_for_label }}" class="form-control" rows="4">{{ form.description.value }}</textarea>
+                {{ form.description.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

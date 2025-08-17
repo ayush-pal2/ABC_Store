@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Products in {{ category.name }}{% endblock %}
+
+{% block content %}
+<div class="product-list-by-category">
+    <h1>Products in {{ category.name }}</h1>
+
+    {% if products %}
+        <div class="products-grid">
+            {% for product in products %}
+                <div class="product-item">
+                    <a href="{% url 'store:product_details' product.category.slug product.slug %}">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h2>{{ product.name }}</h2>
+                    </a>
+                    <p>Price: ${{ product.price }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products available in this category at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+<style>
+    .product-list-by-category {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .products-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .product-item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .product-item:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-item img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-item h2 {
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+</style>

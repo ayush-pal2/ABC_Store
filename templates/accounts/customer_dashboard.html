@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Customer Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}! Here are the available products:</h2>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'store:product_list' %}" class="mb-4">
+    <div class="input-group">
+        <input type="text" class="form-control" name="q" placeholder="Search products..." value="{{ query }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'path/to/placeholder.jpg' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description|slice:":100" }}{% if product.description|length > 100 %}...{% endif %}</p>
+                <p class="card-text"><strong>Price: KES {{ product.price }}</strong></p>
+                <a href="{% url 'store:place_order' product.id %}" class="btn btn-primary">Order Now</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

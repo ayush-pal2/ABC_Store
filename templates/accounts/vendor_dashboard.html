@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Vendor Dashboard{% endblock %}
+
+{% block content %}
+<h2>Your Products</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>KES {{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>
+                <a href="{% url 'store:edit_product' product.id %}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{% url 'store:delete_product' product.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No products available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Your Orders</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.product.name }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.get_status_display }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No orders available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'store:add_product' %}" class="btn btn-success">Add New Product</a>
+{% endblock %}

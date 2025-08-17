@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Store{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to ABC Store</h1>
+    <p class="lead">Discover a wide range of products from various vendors.</p>
+    <hr class="my-4">
+    <p>Start shopping now or browse our categories.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'store:product_list' %}" role="button">View Products</a>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <h3>Featured Categories</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Electronics</li>
+            <li class="list-group-item">Clothing</li>
+            <li class="list-group-item">Home & Garden</li>
+            <!-- Add more categories as needed -->
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <h3>Latest Products</h3>
+        <!-- You can add a few featured products here -->
+        <p>Check out our product list for the latest arrivals!</p>
+    </div>
+</div>
+{% endblock %}
